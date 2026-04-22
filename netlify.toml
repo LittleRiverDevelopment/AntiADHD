@@ -1,0 +1,17 @@
+# Build the static site from source (same output as `npm run build` → `out/`)
+# The deploy zip you had used `publish = ".next"` (incomplete/SSR-style); this
+# project uses Next.js `output: 'export'`, so the published folder is `out/`.
+#
+# Netlify: do not set NEXT_BASE_PATH unless you serve under a subpath. For
+# *.netlify.app or a custom root domain, leave it unset.
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
