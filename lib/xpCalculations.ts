@@ -1,10 +1,9 @@
-import { 
-  LEVEL_THRESHOLDS, 
-  CHARACTER_LEVEL_THRESHOLDS, 
+import {
+  LEVEL_THRESHOLDS,
+  CHARACTER_LEVEL_THRESHOLDS,
   XP_REWARDS,
   type TaskDifficulty,
   type Category,
-  type UserStats,
 } from './types'
 
 /**

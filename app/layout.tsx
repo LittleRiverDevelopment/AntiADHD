@@ -4,13 +4,13 @@ import './globals.css'
 const base = process.env.SITE_BASE_PATH || ''
 
 export const metadata: Metadata = {
-  title: 'Sharp Edge | Sports Betting Analytics',
+  title: 'LifeForge Tracker | Skyrim-style life progression',
   description:
-    'Find edges in sports betting lines. Line discrepancies, +EV bets, and player prop analysis.',
+    'Gamified life stats: 6 skills, daily quests, XP & streaks, 30+ achievements. Progress saved locally.',
 }
 
 export const viewport: Viewport = {
-  themeColor: '#0a0b0f',
+  themeColor: '#0a0a0f',
   width: 'device-width',
   initialScale: 1,
 }
