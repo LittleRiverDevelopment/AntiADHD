@@ -94,7 +94,8 @@ export default function PlayerPropAnalyzer({ playerProps }: Props) {
     ]
   }
   
-  const chartOptions: ChartOptions<'bar'> = {
+  // chart.js annotation plugin is optional at runtime; types only cover built-in plugins
+  const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -125,7 +126,7 @@ export default function PlayerPropAnalyzer({ playerProps }: Props) {
       annotation: {
         annotations: {
           line1: {
-            type: 'line',
+            type: 'line' as const,
             yMin: propLine,
             yMax: propLine,
             borderColor: 'rgb(234, 179, 8)',
@@ -159,7 +160,7 @@ export default function PlayerPropAnalyzer({ playerProps }: Props) {
         beginAtZero: true,
       }
     }
-  }
+  } as ChartOptions<'bar'>
   
   return (
     <div className="space-y-4">
