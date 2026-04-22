@@ -26,10 +26,8 @@ export default function RootLayout({
         <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
         <link rel="manifest" href={`${base}/manifest.json`} />
       </head>
-      <body className="antialiased">
-        <div className="grid-bg min-h-screen">
-          {children}
-        </div>
+      <body className="font-body antialiased text-forge-text-primary">
+        <div className="forge-canvas min-h-screen">{children}</div>
       </body>
     </html>
   )

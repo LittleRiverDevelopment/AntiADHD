@@ -1,9 +1,11 @@
-/** Per-level XP to reach the next level (index 0 = 1→2, …, length 99 = 99→100) */
-const makeLevelThresholds = (base: number, growth: number): number[] =>
-  Array.from({ length: 99 }, (_, i) => Math.max(100, Math.floor(base * growth ** i)))
+import {
+  FORGE_CATEGORY_LEVEL_THRESHOLDS,
+  FORGE_CHARACTER_LEVEL_THRESHOLDS,
+} from './forge-thresholds'
 
-export const LEVEL_THRESHOLDS: number[] = makeLevelThresholds(100, 1.1)
-export const CHARACTER_LEVEL_THRESHOLDS: number[] = makeLevelThresholds(200, 1.12)
+/** Aliases for xp engine (Netlify / zip parity: 100-segment curves). */
+export const LEVEL_THRESHOLDS = FORGE_CATEGORY_LEVEL_THRESHOLDS
+export const CHARACTER_LEVEL_THRESHOLDS = FORGE_CHARACTER_LEVEL_THRESHOLDS
 
 export type TaskDifficulty = 'easy' | 'medium' | 'hard' | 'legendary'
 
@@ -12,27 +14,6 @@ export const XP_REWARDS: Record<TaskDifficulty, number> = {
   medium: 25,
   hard: 50,
   legendary: 100,
-}
-
-export interface LifeTask {
-  id: string
-  name: string
-  isDaily: boolean
-  completed: boolean
-  difficulty: TaskDifficulty
-}
-
-export interface Category {
-  id: string
-  name: string
-  xp: number
-  tasks: LifeTask[]
-}
-
-export interface UserStats {
-  totalXp: number
-  currentStreak: number
-  categories: Category[]
 }
 
 export type AchievementRarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary'
@@ -54,4 +35,45 @@ export interface Achievement {
   rarity: AchievementRarity
   unlocked: boolean
   unlockedAt: string | null
+}
+
+export interface ForgeTask {
+  id: string
+  categoryId: string
+  name: string
+  description?: string
+  difficulty: TaskDifficulty
+  xpReward: number
+  completed: boolean
+  isDaily: boolean
+  completedAt?: string
+}
+
+export interface ForgeCategory {
+  id: string
+  name: string
+  icon: string
+  description: string
+  color: string
+  xp: number
+  level: number
+  tasks: ForgeTask[]
+}
+
+export interface ForgeUserStats {
+  totalXp: number
+  characterLevel: number
+  currentStreak: number
+  longestStreak: number
+  lastActiveDate: string
+  totalTasksCompleted: number
+  joinedDate: string
+}
+
+export interface ForgeGameState {
+  categories: ForgeCategory[]
+  achievements: Achievement[]
+  userStats: ForgeUserStats
+  unlockedThemes: string[]
+  activeTheme: string
 }

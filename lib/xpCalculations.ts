@@ -2,8 +2,8 @@ import {
   LEVEL_THRESHOLDS,
   CHARACTER_LEVEL_THRESHOLDS,
   XP_REWARDS,
+  type ForgeCategory,
   type TaskDifficulty,
-  type Category,
 } from './types'
 
 /**
@@ -123,7 +123,7 @@ export function calculateXpReward(
 /**
  * Get total XP across all categories
  */
-export function getTotalXp(categories: Category[]): number {
+export function getTotalXp(categories: Pick<ForgeCategory, 'xp'>[]): number {
   return categories.reduce((total, cat) => total + cat.xp, 0)
 }
 
@@ -183,7 +183,7 @@ export function checkLevelUp(
 /**
  * Calculate daily progress
  */
-export function calculateDailyProgress(categories: Category[]): {
+export function calculateDailyProgress(categories: ForgeCategory[]): {
   completed: number
   total: number
   percentage: number
